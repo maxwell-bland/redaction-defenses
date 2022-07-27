@@ -26,8 +26,9 @@ def get_redacted_text(path):
                 if len(run) > 1:
                     texts.append(' '.join(run))
                 texts.append(''.join(run))
-    print(texts)
-    return texts
+
+    # we reverse sort by length in order to get the longest redaction first
+    return sorted(texts, key=lambda s: len(s), reverse=True)
  
 def redaction(path, texts):
     doc = fitz.open(path)
